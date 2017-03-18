@@ -22,9 +22,9 @@ This is for when I want to spin up an NLP server on EC2 for access from a web br
 
 	* **Step 2: Choose an Instance Type**
 
-		**t2.small** ~ this has 2g memory, which we need to run the server
+		**t2.small** ~ this has 2g memory, which we need to run the server (actually, more sophisticated NLP would require more memory, but this is enough for dependency parsing)
 
-	* skip through the next steps:
+	* skip through the next steps (keep the defaults):
 		* **Step 3: Configure Instance Details**
 		* **Step 4: Add Storage**
 		* **Step 5: Add Tags**
@@ -35,7 +35,7 @@ This is for when I want to spin up an NLP server on EC2 for access from a web br
 
 	* **Step 7: Review Instance Launch**
 
-		Click launch and make a new key pair if you need to. This will be a file that ends with .pem, e.g. `key.pem`. I put this file in the directory `.ssh/key.pem`.
+		Click launch and make a new key pair if you need to. This will be a file that ends with .pem, e.g. `key.pem`. I put this file in my home `.ssh` directory `~/.ssh/key.pem`.
 
 3. View Instances and get Public DNS
 
@@ -48,7 +48,7 @@ You should see one instance that's being set up. Select that instance and you'll
 
 ## Once you're SSHed into an Ubuntu instance
 
-Just run `INSTALL.sh` on a new instance. That will set everything up.
+Clone this repo into your home directory. Then run `INSTALL.sh` on a new instance. That will set everything up.
 
 When the installation is done, you can start running the server by running `SERVE.sh`.
 
