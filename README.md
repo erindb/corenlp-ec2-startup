@@ -1,3 +1,15 @@
+On Robert's server, when everything is already installed, open screeni `screen` or `screen -r` and run:
+
+    sh SERVE.sh
+
+and in another screen (`control+a c`)
+
+    python server.py
+
+Then detach with `control+a a` `control+a d`. Use `control+a n` to switch between screens. Type `exit` when done.
+
+- - - -
+
 This is for when I want to spin up an NLP server on EC2 for access from a web browser. I need to install CoreNLP and listen for POST requests.
 
 ## Setting up the EC2 instance
