@@ -1,10 +1,12 @@
 import BaseHTTPServer, SimpleHTTPServer
 import ssl
+import requests
 
 class S(BaseHTTPServer.BaseHTTPRequestHandler):
     def _set_headers(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
+        self.send_header('Access-Control-Allow-Origin', 'https://rxdhawkins.me')
         self.end_headers()
 
     def do_GET(self):
@@ -13,11 +15,19 @@ class S(BaseHTTPServer.BaseHTTPRequestHandler):
 
     def do_HEAD(self):
         self._set_headers()
-        
+
     def do_POST(self):
-        # Doesn't do anything with posted data
+        content_length = int(self.headers['Content-Length'])
+        post_data = self.rfile.read(content_length)
+        print post_data
+        import requests
+        url = "http://localhost:401?properties={annotators:'tokenize,ssplit,pos,depparse'}"
+        data = post_data
+        parse = requests.post(url, data=data).text
+        print parse
         self._set_headers()
-        self.wfile.write("<html><body><h1>POST!</h1></body></html>")
+        self.wfile.write(parse)
+        #self.wfile.write("<html><body><h1>POST!</h1></body></html>")
 
 httpd = BaseHTTPServer.HTTPServer(('rxdhawkins.me', 400), S)
 httpd.socket = ssl.wrap_socket (httpd.socket, certfile='/etc/apache2/ssl/rxdhawkins.me.pem', server_side=True)
