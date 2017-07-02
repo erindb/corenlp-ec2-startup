@@ -19,17 +19,17 @@ class S(BaseHTTPServer.BaseHTTPRequestHandler):
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length)
-        print post_data
         import requests
         url = "http://localhost:401?properties={annotators:'tokenize,ssplit,pos,depparse'}"
         data = post_data
+        print(data)
         parse = requests.post(url, data=data).text
         print parse
         self._set_headers()
         self.wfile.write(parse)
         #self.wfile.write("<html><body><h1>POST!</h1></body></html>")
 
-httpd = BaseHTTPServer.HTTPServer(('rxdhawkins.me', 400), S)
+httpd = BaseHTTPServer.HTTPServer(('rxdhawkins.me', 54321), S)
 httpd.socket = ssl.wrap_socket (httpd.socket, certfile='/etc/apache2/ssl/rxdhawkins.me.pem', server_side=True)
 print "serving..."
 httpd.serve_forever()
