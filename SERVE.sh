@@ -3,5 +3,5 @@
 # source SERVE.sh
 
 cd corenlp
-sudo java -mx2g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 401 -timeout 15000
+java -mx2g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 12401 -timeout 15000
 cd ..
