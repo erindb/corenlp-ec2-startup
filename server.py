@@ -20,13 +20,14 @@ class S(BaseHTTPServer.BaseHTTPRequestHandler):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length)
         import requests
-        url = "http://localhost:401?properties={annotators:'tokenize,ssplit,pos,depparse'}"
+        from nlp import process_parsed_data
+        url = "http://localhost:12401?properties={annotators:'tokenize,ssplit,pos,depparse'}"
         data = post_data
         print(data)
         parse = requests.post(url, data=data).text
-        print parse
+        output = process_parsed_data(parse)
         self._set_headers()
-        self.wfile.write(parse)
+        self.wfile.write(output)
         #self.wfile.write("<html><body><h1>POST!</h1></body></html>")
 
 httpd = BaseHTTPServer.HTTPServer(('rxdhawkins.me', 54321), S)
