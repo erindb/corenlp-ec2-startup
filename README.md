@@ -66,9 +66,9 @@ When the installation is done, you can start running the server by running `SERV
 
 Here are some example requests:
 
-	wget --post-data 'The quick brown fox jumped over the lazy dog.' 'http://whatever-the-public-DNS-is/?properties={"annotators":"tokenize","outputFormat":"json"}' -O -
+	wget --post-data 'I like her because she is nice' 'http://localhost:12345/?properties={"annotators":"tokenize","outputFormat":"json"}' -O -
 
-	curl --data 'The quick brown fox jumped over the lazy dog.' 'http://whatever-the-public-DNS-is/?properties={%22annotators%22%3A%22tokenize%2Cssplit%2Cpos%22%2C%22outputFormat%22%3A%22json%22}' -o -
+	curl --data 'I like her because she is nice' 'http://localhost:12345/?properties={%22annotators%22%3A%22tokenize%2Cssplit%2Cdepparse%2Cpos%22%2C%22outputFormat%22%3A%22json%22}' -o -
 
 And here's an example request from a browser:
 
