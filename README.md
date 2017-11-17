@@ -68,7 +68,7 @@ Here are some example requests:
 
 	wget --post-data 'I like her because she is nice' 'http://localhost:12345/?properties={"annotators":"tokenize","outputFormat":"json"}' -O -
 
-	curl --data 'I like her because she is nice' 'http://localhost:12345/?properties={%22annotators%22%3A%22tokenize%2Cssplit%2Cdepparse%2Cpos%22%2C%22outputFormat%22%3A%22json%22}' -o -
+	curl --data 'It did not however , cover any sort of local taxes or similar measures' 'http://localhost:12345/?properties={%22annotators%22%3A%22tokenize%2Cssplit%2Cdepparse%2Cpos%22%2C%22outputFormat%22%3A%22json%22}' -o -
 
 And here's an example request from a browser:
 
