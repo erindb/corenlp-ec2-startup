@@ -1,9 +1,11 @@
 #! usr/bin/bash
 
-sudo apt-get update
-sudo apt-get install unzip
-sudo apt-get install default-jre
-sudo apt-get install authbind
+if [[ $platform == 'linux' ]]; then
+	sudo apt-get update
+	sudo apt-get install unzip
+	sudo apt-get install default-jre
+	sudo apt-get install authbind
+fi
 
 corenlp_dir="stanford-corenlp-full-2016-10-31"
 
