@@ -3,5 +3,9 @@
 # source SERVE.sh
 
 cd corenlp
-java -mx2g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 12345 -timeout 15000 -quiet  2&>1 >/dev/null
+
+# for file in `find . -name "*.jar"`; do export
+# CLASSPATH="$CLASSPATH:`realpath $file`"; done
+
+java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 12345 -timeout 15000 -quiet -preload tokenize,ssplit,pos,depparse # 2&>1 >/dev/null
 cd ..
