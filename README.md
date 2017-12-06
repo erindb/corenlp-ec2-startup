@@ -1,3 +1,60 @@
+## Basic usage
+
+1. Start server
+
+	sh SERVE.sh [language] (--silent)
+
+Optionally add a language: `spanish`, `english`, or `chinese` are supported.
+
+Optionally add `--silent` to the end to suppress printed output (which makes everything run faster).
+
+2. Send requests
+
+	* using wget
+
+		wget --post-data 'I like her because she is nice' 'http://localhost:12345/?properties={"annotators":"tokenize","outputFormat":"json"}' -O -
+
+	* using curl
+
+		curl --data 'It did not however , cover any sort of local taxes or similar measures' 'http://localhost:12345/?properties={%22annotators%22%3A%22tokenize%2Cssplit%2Cdepparse%2Cpos%22%2C%22outputFormat%22%3A%22json%22}' -o -
+
+	* using python
+
+		import requests
+		data = "The quick brown fox jumped over the lazy dog."
+		url = "http://localhost:12345?properties={annotators:'tokenize,ssplit,pos,depparse'}"
+		parse_string = requests.post(url, data=data).text
+		return json.loads(parse_string)["sentences"][0]
+
+	* using javascript
+
+		var properties = {annotators: "tokenize"};
+		var property_string = JSON.stringify(properties);
+		var properties_for_url = encodeURIComponent(property_string);
+		$.ajax({
+	      type: "POST",
+	      url: 'http://' +
+	        'whatever-the-public-DNS-is/' +
+	        '?properties=' +
+	        properties_for_url,
+	      data: 'The quick brown fox jumped over the lazy dog.',
+	      success: function (data){
+	        parse = data;
+	        console.log(parse);
+	      },
+	      error: function (responseData, textStatus, errorThrown) {
+	        alert('POST failed.');
+	      }
+		});
+
+## Installation
+
+	sh INSTALL.sh [language]
+
+TODO: Optionally add a language: `spanish`, `english`, or `chinese` are supported.
+
+## On Digital Ocean
+
 On Robert's server, when everything is already installed, open screeni `screen` or `screen -r` and run:
 
     sh SERVE.sh
@@ -92,3 +149,7 @@ And here's an example request from a browser:
 	});
 
 Note that with only 2g of memory, we won't be able to run *all* of the annotators. But "tokenize,ssplit,pos,depparse" works fine, and that's all I need for many uses.
+
+# Multilingual
+
+
