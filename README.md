@@ -49,9 +49,11 @@ Optionally add `--silent` to the end to suppress printed output (which makes eve
 
 ## Installation
 
-	sh INSTALL.sh [language]
+On linux:
 
-TODO: Optionally add a language: `spanish`, `english`, or `chinese` are supported.
+	sh INSTALL.sh
+
+On mac, just look at the `INSTALL.sh` file and take the appropriate lines from there...
 
 ## On Digital Ocean
 

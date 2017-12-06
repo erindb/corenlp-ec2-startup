@@ -13,3 +13,14 @@ wget "http://nlp.stanford.edu/software/$corenlp_dir.zip"
 unzip $corenlp_dir.zip
 
 ln -s $corenlp_dir corenlp
+
+cd corenlp
+
+echo "downloading current english models"
+wget http://nlp.stanford.edu/software/stanford-corenlp-models-current.jar
+echo "downloading current spanish models"
+wget http://nlp.stanford.edu/software/stanford-spanish-corenlp-models-current.jar
+echo "downloading current chinese models"
+wget http://nlp.stanford.edu/software/stanford-chinese-corenlp-models-current.jar
+
+cd ..
