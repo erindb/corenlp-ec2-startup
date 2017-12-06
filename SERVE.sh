@@ -11,10 +11,12 @@ if [ "$1" == "" ] || [[ "$1" =~ ^(english|spanish|chinese)$ ]]; then
 	echo "running corenlp server for "$language
 
 	case $language in
-	    spanish )
-	        properties_tag="-props StanfordCoreNLP-spanish.properties -serverProperties StanfordCoreNLP-spanish.properties" ;;
-	    english )
-	        properties_tag="" ;;
+		spanish )
+			properties_tag="-props StanfordCoreNLP-spanish.properties -serverProperties StanfordCoreNLP-spanish.properties" ;;
+		chinese )
+			properties_tag="-props StanfordCoreNLP-chinese.properties -serverProperties StanfordCoreNLP-chinese.properties" ;;
+		english )
+			properties_tag="" ;;
 	esac
 
 	cd corenlp
