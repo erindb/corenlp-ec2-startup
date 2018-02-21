@@ -154,4 +154,9 @@ Note that with only 2g of memory, we won't be able to run *all* of the annotator
 
 # Multilingual
 
+# HTTPS wrapper
+
+## Test multithreading
+
+	curl --data 'It did not however , cover any sort of local taxes or similar measures' 'https://rxdhawkins.me:8882/?properties={%22annotators%22%3A%22tokenize%2Cssplit%2Cdepparse%2Cpos%22%2C%22outputFormat%22%3A%22json%22}' -o -
 

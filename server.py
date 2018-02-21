@@ -1,21 +1,29 @@
-import BaseHTTPServer, SimpleHTTPServer
-import ssl
 import requests
 from nlp import process_parsed_data
 import os
 
-SERVER_ADDRESS = (HOST, PORT) = 'rxdhawkins.me', 8882
+from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
+from SocketServer import ThreadingMixIn
+import threading
+import ssl
 
-class S(BaseHTTPServer.BaseHTTPRequestHandler):
+class Handler(BaseHTTPRequestHandler):
+
+    def do_GET(self):
+        # self._set_headers()
+        # self.wfile.write("<html><body><h1>hi!</h1></body></html>")
+        self.send_response(200)
+        self.end_headers()
+        message =  threading.currentThread().getName()
+        self.wfile.write(message)
+        self.wfile.write('\n')
+        return
+
     def _set_headers(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
         self.send_header('Access-Control-Allow-Origin', 'https://rxdhawkins.me')
         self.end_headers()
-
-    def do_GET(self):
-        self._set_headers()
-        self.wfile.write("<html><body><h1>hi!</h1></body></html>")
 
     def do_HEAD(self):
         self._set_headers()
@@ -32,8 +40,12 @@ class S(BaseHTTPServer.BaseHTTPRequestHandler):
         self.wfile.write(output)
         #self.wfile.write("<html><body><h1>POST!</h1></body></html>")
 
-httpd = BaseHTTPServer.HTTPServer(('rxdhawkins.me', 8882), S)
-httpd.socket = ssl.wrap_socket (httpd.socket, certfile='/etc/apache2/ssl/rxdhawkins.me.pem', server_side=True)
-print "serving..."
-httpd.serve_forever()
+class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
+    """Handle requests in a separate thread."""
+
+if __name__ == '__main__':
+    server = ThreadedHTTPServer(('rxdhawkins.me', 8882), Handler)
+    server.socket = ssl.wrap_socket(server.socket, certfile='/etc/apache2/ssl/rxdhawkins.me.pem', server_side=True)
+    print 'Starting server, use <Ctrl-C> to stop'
+    server.serve_forever()
 
