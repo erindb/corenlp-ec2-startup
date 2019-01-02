@@ -2,7 +2,7 @@
 
 1. Start server
 
-	sh SERVE.sh [language] (--silent)
+	bash SERVE.sh [language] (--silent)
 
 Optionally add a language: `spanish`, `english`, or `chinese` are supported.
 
@@ -49,17 +49,19 @@ Optionally add `--silent` to the end to suppress printed output (which makes eve
 
 ## Installation
 
-On linux:
+On unix:
 
-	sh INSTALL.sh
+	bash INSTALL.sh
 
-On mac, just look at the `INSTALL.sh` file and take the appropriate lines from there...
+On windows, just look at the `INSTALL.sh` file and take the appropriate lines from there...
 
-## On Digital Ocean
+## Background for setting this up on a remote server
+
+### On Digital Ocean
 
 On Robert's server, when everything is already installed, open screeni `screen` or `screen -r` and run:
 
-    sh SERVE.sh
+    bash SERVE.sh
 
 and in another screen (`control+a c`)
 
@@ -71,13 +73,13 @@ Then detach with `control+a a` `control+a d`. Use `control+a n` to switch betwee
 
 This is for when I want to spin up an NLP server on EC2 for access from a web browser. I need to install CoreNLP and listen for POST requests.
 
-## Setting up the EC2 instance
+### Setting up the EC2 instance
 
-### Prerequisites
+#### Prerequisites
 
 * set up an AWS account
 
-### Set up a new instance
+#### Set up a new instance
 
 1. Go online to the EC2 Dashboard in the AWS console.
 
@@ -117,7 +119,7 @@ You should see one instance that's being set up. Select that instance and you'll
 
 	ssh ubuntu@whatever-the-public-DNS-is -i path/to/key.pem
 
-## Once you're SSHed into an Ubuntu instance
+### Once you're SSHed into an Ubuntu instance
 
 Clone this repo into your home directory. Then run `INSTALL.sh` on a new instance. That will set everything up.
 
@@ -152,9 +154,9 @@ And here's an example request from a browser:
 
 Note that with only 2g of memory, we won't be able to run *all* of the annotators. But "tokenize,ssplit,pos,depparse" works fine, and that's all I need for many uses.
 
-# Multilingual
+## Multilingual
 
-# HTTPS wrapper
+## HTTPS wrapper
 
 ## Test multithreading
 
